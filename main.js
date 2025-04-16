@@ -96,23 +96,6 @@ $(document).ready(async function () {
   let daftartugas = await ambildaftartugas();
   let nomor = 1;
 
-  daftartugas.forEach((data) => {
-    elemenDaftar.append(
-      `<tr>
-        <th>${nomor}</th>
-        <td>${data.tugas}</td>
-        <td>
-          <button class="btn-status" data-status="${data.status}" data-id="${data.id}">${data.status}</button>
-        </td>
-        <td>${data.prioritas}</td>
-        <td>${data.tanggal}</td>
-        <td><button class="btn btn-warning ubah" data-id="${data.id}">Ubah</button></td>
-        <td><a href="#" class="btn btn-danger tombol-hapus" data-id="${data.id}">Hapus</a></td>
-      </tr>`
-    );
-    nomor++;
-  });
-
   // Event listener untuk hapus tugas
   $(".tombol-hapus").click(async function () {
     await hapustugas($(this).attr("data-id"));
