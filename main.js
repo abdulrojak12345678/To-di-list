@@ -115,8 +115,6 @@ $(document).on("click", ".btn-status", function () {
   let statusBaru;
 
   if (statusSekarang === "Belum Selesai") {
-    statusBaru = "Sedang Dikerjakan";
-  } else if (statusSekarang === "Sedang Dikerjakan") {
     statusBaru = "Selesai";
   } else {
     statusBaru = "Belum Selesai";
@@ -129,6 +127,7 @@ $(document).on("click", ".btn-status", function () {
 
   // Tambahkan kode AJAX jika ingin menyimpan perubahan status ke database
   console.log(`Status tugas ID ${tugasId} diubah menjadi ${statusBaru}`);
+  
 });
 
 // Fungsi untuk memperbarui warna tombol berdasarkan status
@@ -148,3 +147,9 @@ $(document).ready(function () {
     updateWarnaStatus($(this), $(this).attr("data-status"));
   });
 });
+export async function ubahStatusTugas(id, statusBaru) {
+//  const db = firebase.firestore(); // atau sesuai dengan cara kamu ambil DB
+  await updateDoc(doc(db, "to-di-list", docId), {
+      status: status,
+  });
+}
