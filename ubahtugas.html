@@ -57,28 +57,33 @@
     <script type="module">
       import { ambiltugas, ubahtugas } from './main.js';
 
-      let tombolubah = document.getElementById('tombol-ubah');
-      let elementugas = document.getElementById('input-tugas');
-      let elemenstatus = document.getElementById('input-status');
-      let elemenprioritas = document.getElementById('input-prioritas');
-      let elementanggal = document.getElementById('input-tanggal');
-      const queryString = window.location.search;
-      const parameterURL = new URLSearchParams(queryString);
-      const docId = parameterURL.get('docId');
-      const Absensi = await ambiltugas(docId);
+let tombolubah = document.getElementById('tombol-ubah');
+let elementugas = document.getElementById('input-tugas');
+let elemenstatus = document.getElementById('input-status');
+let elemenprioritas = document.getElementById('input-prioritas');
+let elementanggal = document.getElementById('input-tanggal');
 
-      elementugas.value = Absensi.tugas;
-      elemenstatus.value = Absensi.status;
-      elemenprioritas.value = Absensi.prioritas;
-      elementanggal.value = Absensi.tanggal;
+async function init() {
+  const queryString = window.location.search;
+  const parameterURL = new URLSearchParams(queryString);
+  const docId = parameterURL.get('docId');
 
+  const Absensi = await ambiltugas(docId);
 
+  elementugas.value = Absensi.tugas;
+  elemenstatus.value = Absensi.status;
+  elemenprioritas.value = Absensi.prioritas;
+  elementanggal.value = Absensi.tanggal;
 
-      tombolubah.addEventListener('click', async function(el) {
-        el.preventDefault();
-        await ubahtugas(docId, elementugas.value, elemenstatus.value, elemenprioritas.value, elementanggal.value);
-        window.location.href = 'index.html';
-      });
+  tombolubah.addEventListener('click', async function (el) {
+    el.preventDefault();
+    await ubahtugas(docId, elementugas.value, elemenstatus.value, elemenprioritas.value, elementanggal.value);
+    window.location.href = 'index.html';
+  });
+}
+
+init();
+
     </script>
 </body>
 
