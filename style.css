@@ -95,10 +95,6 @@ tr:hover {
   color: white;
 }
 
-.btn-status[data-status="Sedang Dikerjakan"] {
-  background-color: #ffc107; /* Kuning */
-  color: black;
-}
 
 .btn-status[data-status="Selesai"] {
   background-color: #28a745; /* Hijau */

@@ -11,7 +11,7 @@ import {
   orderBy,
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
+// conpigurasi firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBcym1i4oAyM2rFmBU_Ipa0vcC7Pdz0dws",
   authDomain: "insan-cemerlang-2e18f.firebaseapp.com",
@@ -24,7 +24,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+// untuk mengexport ke firebase
 export async function ambildaftartugas() {
   const refDokumen = collection(db, "to-di-list");
   const kueri = query(refDokumen, orderBy("tugas"));
@@ -43,7 +43,7 @@ export async function ambildaftartugas() {
 
   return hasil;
 }
-
+// untuk menambahkan daftar tugas dab di update kw firebase
 export async function tambahtugas(tugas, status, prioritas, tanggal) {
   try {
     const dokRef = await addDoc(collection(db, 'to-di-list'), {
@@ -57,11 +57,11 @@ export async function tambahtugas(tugas, status, prioritas, tanggal) {
     console.log('gagal menambah tugas ' + e);
   }
 }
-
+// untuk menghapus tugas
 export async function hapustugas(docId) {
   await deleteDoc(doc(db, "to-di-list", docId));
 }
-
+// mengubah tugas dan mengupdate kembali ke firebase
 export async function ubahtugas(docId, tugas, status, prioritas, tanggal) {
   await updateDoc(doc(db, "to-di-list", docId), {
     tugas: tugas,
@@ -70,14 +70,14 @@ export async function ubahtugas(docId, tugas, status, prioritas, tanggal) {
     tanggal: tanggal,
   });
 }
-
+// untuk mengexport daftar tugas ke firebase
 export async function ambiltugas(docId) {
   const docRef = await doc(db, "to-di-list", docId);
   const docSnap = await getDoc(docRef);
 
   return await docSnap.data();
 }
-
+// untuk mengubah status
 function ubahStatus(tombol) {
   let status = tombol.dataset.status;
 
@@ -90,7 +90,7 @@ function ubahStatus(tombol) {
   }
 }
 
-
+// untuk mengabil daftar tugas ntuk ditampilkan 
 $(document).ready(async function () {
   let elemenDaftar = $("#daftar-tugas > thead");
   let daftartugas = await ambildaftartugas();
