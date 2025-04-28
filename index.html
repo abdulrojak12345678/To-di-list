@@ -128,7 +128,8 @@
       const id = $(this).attr('data-id');
       const statusSekarang = $(this).attr('data-status');
       console.log('status saat ini', statusSekarang);
-      const statusBaru = 'selesai'; // atau bisa toggle jika ingin interaktif
+      const statusBaru = 'selesai'; 
+      // atau bisa toggle jika ingin interaktif
 console.log('status baru', statusBaru);
       if (statusSekarang !== 'selesai') {console.log('status saat ini', statusSekarang);
         await ubahStatusTugas(id, statusBaru);
